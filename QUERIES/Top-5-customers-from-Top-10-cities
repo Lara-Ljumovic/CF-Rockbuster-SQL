@@ -1,0 +1,33 @@
+-- Top 5 customers by amount paid from Top 10 cities
+SELECT payment.customer_id,
+CONCAT (customer.first_name, ' ', customer.last_name) AS customer_name,
+country.country, city.city,
+SUM (payment.amount) AS total_amount_paid
+FROM payment
+INNER JOIN customer ON payment.customer_id = customer.customer_id
+INNER JOIN address ON customer.address_id = address.address_id
+INNER JOIN city ON address.city_id = city.city_id
+INNER JOIN country ON city.country_ID = country.country_ID
+WHERE city IN
+--Top 10 cities from set of top 10 countries by number of customers
+(SELECT city.city
+FROM customer
+INNER JOIN address ON customer.address_id = address.address_id
+INNER JOIN city ON address.city_id = city.city_id
+INNER JOIN country ON city.country_ID = country.country_ID
+WHERE country IN
+--Top 10 countries by number of customers
+(SELECT country.country
+FROM customer
+INNER JOIN address ON customer.address_id = address.address_id
+INNER JOIN city ON address.city_id = city.city_id
+INNER JOIN country ON city.country_ID = country.country_ID
+GROUP BY country.country
+ORDER BY COUNT (customer.customer_id) DESC
+LIMIT 10)
+GROUP BY country.country, city.city
+ORDER BY COUNT (customer.customer_id) DESC
+LIMIT 10)
+GROUP BY payment.customer_id, customer_name, country.country, city.city
+ORDER BY total_amount_paid DESC
+LIMIT 5;
