@@ -1,0 +1,10 @@
+--Bottom 10 movies per total amount paid
+SELECT film.film_id, film.title, film.rental_rate, film.replacement_cost,
+SUM(payment.amount) AS total_amount_paid
+FROM film
+INNER JOIN inventory ON film.film_id = inventory.film_id
+INNER JOIN rental ON inventory.inventory_id = rental.inventory_id
+INNER JOIN payment ON rental.rental_id = payment.rental_id
+GROUP BY film.film_id, film.title
+ORDER BY total_amount_paid
+LIMIT 10;
