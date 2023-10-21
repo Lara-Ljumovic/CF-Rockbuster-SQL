@@ -1,0 +1,12 @@
+SELECT customer.customer_id,
+CONCAT (customer.first_name, ' ', customer.last_name) AS customer_name,
+country.country, city.city,
+SUM (payment.amount) AS total_amount_spent
+FROM address
+JOIN city ON city.city_id = address.city_id
+JOIN country ON country.country_id = city.country_id
+JOIN customer ON customer.address_id = address.address_id
+JOIN payment ON payment.customer_id = customer.customer_id
+GROUP BY customer.customer_id, country.country, city.city, customer_name
+ORDER BY total_amount_spent DESC
+LIMIT 10;
