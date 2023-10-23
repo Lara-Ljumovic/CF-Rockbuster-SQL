@@ -12,7 +12,7 @@ Link for dataset can be found in [Project brief](Documents/Project-Brief.pdf) an
 in [Data Dictionary](/Documents/Data-Dictionary.pdf)
 
 ## Tools and project deliverables
-For this proect I used:
+For this project I used:
  * *PostreSQL* with PGAdmin to run queris
  * *DBVisualizer* to create ERD
  * *Tableau* for [data visualizations](https://public.tableau.com/app/profile/lara.ljumovic/viz/Rockbustervisualizations_16949222828880/LTVcust?publish=yes)
