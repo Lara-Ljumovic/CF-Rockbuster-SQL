@@ -1,4 +1,4 @@
-# CF-Rockbuster-SQL
+# Rockbuster
 Data analysis and data visualization project for fictive movie rental company Rockbuster Stealth LLC using PostreSQL and Tableau.
 
 ## Objective
